@@ -10,4 +10,6 @@ public interface CityService {
 
 	City findByName(String name);
 
+	City findbyId(Integer id);
+
 }

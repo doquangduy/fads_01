@@ -30,8 +30,9 @@
 
 		<action name="welcome" class="com.framgia.action.CustomSessionAction">
 			<result name="SUCCESS_ADMIN" type="redirect">/admin/index</result>
-			<result name="SUCCESS_USER" type="tiles">home</result>
-			<result name="Acess_Denied" type="tiles">accessDenied</result>
+			<result name="SUCCESS_USER" type="redirect">/homepage</result>
+			<result name="Acess_Denied" type="tiles">accessDenied
+			</result>
 		</action>
 
 		<action name="logout">
@@ -99,14 +100,25 @@
 			<result name="success">news-list</result>
 		</action>
 		<action name="postnews" class="newsAction" method="addNews">
+			<result name="login" type="redirect">/login</result>
 			<result name="success">newspost</result>
 		</action>
 
 		<action name="news-detail" class="newsAction" method="showDetailNews">
 			<result name="success">news-detail</result>
 		</action>
-
 		<action name="newspost" class="newsAction" method="saveOrUpdateNews">
+			<result name="success" type="redirect">/homepage</result>
+			<result name="input">newspost</result>
+		</action>
+
+		<action name="postlist" class="newsAction" method="postList">
+			<result name="success">postlist</result>
+			<result name="login" type="redirect">/login</result>
+		</action>
+
+		<action name="createNewsForm" class="newsAction" method="saveOrUpdateNews">
+			<result name="login" type="redirect">/login</result>
 			<result name="success" type="redirect">/homepage</result>
 			<result name="input">newspost</result>
 		</action>
@@ -125,7 +137,10 @@
 			</result>
 			<result name="error" type="redirect">/news-list</result>
 		</action>
-
+		<action name="favorite-index" class="userFollowNewsAction"
+			method="showMyFavorite">
+			<result name="success">favorite-index</result>
+		</action>
 		<action name="news-tittle" class="newsAction" method="showTittle">
 			<result name="success" type="json">
 				<param name="excludeProperties">newses,news,id,userFollowNews,keyword,categories,comments,cities,comment,description,newsId</param>

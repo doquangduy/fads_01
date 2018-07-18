@@ -1,9 +1,9 @@
 package com.framgia.dao.impl;
-
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -11,6 +11,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.framgia.dao.NewsDAO;
 import com.framgia.model.News;
+import com.framgia.model.User;
 import com.framgia.search.Search;
 
 public class NewsDAOImpl extends GenericDAOAbstract<News, Integer> implements NewsDAO {
@@ -38,4 +39,15 @@ public class NewsDAOImpl extends GenericDAOAbstract<News, Integer> implements Ne
 		return (List<News>) getSession().createQuery(cr.select(root)).getResultList();
 	}
 
+	@Override
+	public List<News> findNewsByUserId(Integer user_id) {
+		CriteriaBuilder builder = getSession().getCriteriaBuilder();
+		CriteriaQuery<News> criteriaQuery = builder.createQuery(News.class);
+		Root<News> root = criteriaQuery.from(News.class);
+		Join<News, User> join_user = root.join("user");
+		if (user_id != null) {
+			criteriaQuery.where(builder.equal(join_user.get("id"), user_id));
+		}
+		return getSession().createQuery(criteriaQuery.select(root)).getResultList();
+	}
 }

@@ -2,7 +2,9 @@ package com.framgia.action;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.commons.lang.StringUtils;
+
 import com.framgia.model.Category;
 import com.framgia.model.City;
 import com.framgia.model.Comment;
@@ -24,29 +26,40 @@ public class NewsAction extends BaseAction {
 	private List<String> tittles;
 	private List<News> newses;
 	private String keyword;
+	private List<News> postList;
+
+	public List<News> getPostList() {
+		return postList;
+	}
+
+	public void setPostList(List<News> postList) {
+		this.postList = postList;
+	}
 
 	public String saveOrUpdateNews() {
-		news.setStatus(1);
+
+		if (getCurrentUser() == null)
+			return LOGIN;
+
 		if (!saveFiles())
 			return ERROR;
+
+		news.setStatus(1);
+		postList = newsService.findNewsPost(getCurrentUser());
 		news.setUser(getCurrentUser());
+
 		List<NewsImage> newsImgs = new ArrayList<>();
 		for (int i = 0; i < getMyFiles().size(); i++) {
 			NewsImage newsImg = new NewsImage();
 			newsImg.setName(getMyFilesFileName().get(i));
 			newsImgs.add(newsImg);
 		}
+
 		news = newsService.saveOrUpdate(news, newsImgs);
 		if (news != null)
 			return SUCCESS;
 		else
 			return INPUT;
-	}
-
-	public String addNews() {
-		categories = categoryService.findAll();
-		cities = cityService.findAll();
-		return SUCCESS;
 	}
 
 	public String index() {
@@ -57,6 +70,28 @@ public class NewsAction extends BaseAction {
 		tittles = new ArrayList<String>();
 		newses = newsService.loadAll();
 		newses.forEach(news -> tittles.add(news.getTittle().toLowerCase()));
+		return SUCCESS;
+	}
+
+	public String addNews() {
+		if (getCurrentUser() == null)
+			return LOGIN;
+
+		categories = categoryService.findAll();
+		cities = cityService.findAll();
+		return SUCCESS;
+	}
+
+	public String postList() {
+		if (getCurrentUser() == null)
+			return LOGIN;
+		postList = newsService.findNewsPost(getCurrentUser());
+		for (News news : postList) {
+			news.setNewsImages(newsService.findImageByIdNews(news.getId()));
+			news.setCategory(categoryService.findbyId(news.getCategory().getId()));
+			news.setCity(cityService.findbyId(news.getCity().getId()));
+		}
+
 		return SUCCESS;
 	}
 
@@ -199,3 +234,4 @@ public class NewsAction extends BaseAction {
 	}
 
 }
+

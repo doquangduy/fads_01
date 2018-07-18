@@ -165,6 +165,9 @@
 	<definition name="newspost" extends="client-base.definition">
 		<put-attribute name="body" value="/client/news/addnewspost.jsp" />
 	</definition>
+	<definition name="postlist" extends="client-base.definition">
+		<put-attribute name="body" value="/client/news/listofUserPost.jsp" />
+	</definition>
 	<definition name="news-detail" extends="client-base.definition">
 		<put-attribute name="body" value="/client/news/viewNew.jsp" />
 		<put-list-attribute name="cssDefault">

@@ -43,4 +43,12 @@ public class CityServiceImpl implements CityService {
 		}
 	}
 
+	@Override
+	public City findbyId(Integer id) {
+		try {
+			return cityDAO.findBy("id", id);
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

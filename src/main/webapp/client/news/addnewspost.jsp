@@ -1,5 +1,4 @@
-<%@ taglib prefix="s" uri="/struts-tags"%>
-
+<%@include file="/includedTags.jsp"%>
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 	<div class="row">
 		<div class="col-lg-12">
@@ -18,9 +17,11 @@
 					<s:text name="news.action.head" />
 				</div>
 				<div class="panel-body">
-					<s:form action="newspost" method="post"
-						enctype="multipart/form-data" validate="true">
-						<div class="row" style="margin-bottom: 40px">
+					<c:url var="createNewsUrl" value="/createNewsForm" />
+					<form
+						action="${createNewsUrl}?${_csrf.parameterName}=${_csrf.token}"
+						method="post" enctype="multipart/form-data" validate="true">
+						<div class="row" >
 							<div class="col-xs-8">
 								<div class="form-group">
 									<label><s:text name="news.action.tittle" /></label> <input
@@ -32,6 +33,7 @@
 									<s:textarea class="form-control" rows="5" name="news.content"></s:textarea>
 									<s:fielderror fieldName="news.content"></s:fielderror>
 								</div>
+
 								<div class="form-group">
 									<label><s:text name="news.action.phonenumber" /></label>
 									<s:textfield name="news.phoneNumber" class="form-control"></s:textfield>
@@ -49,7 +51,7 @@
 									<s:file name="myFiles" label="Select a File to upload" />
 									<s:file name="myFiles" label="Select a File to upload" />
 									<s:file name="myFiles" label="Select a File to upload" />
-								<s:fielderror fieldName="news.images"></s:fielderror>
+									<s:fielderror fieldName="news.images"></s:fielderror>
 
 								</div>
 								<div class="form-group">
@@ -80,7 +82,7 @@
 								</s:a>
 							</div>
 						</div>
-					</s:form>
+					</form>
 					<div class="clearfix"></div>
 				</div>
 			</div>

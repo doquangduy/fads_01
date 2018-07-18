@@ -26,7 +26,15 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
+	<!-- // updaload file -->
+	<filter>
+		<filter-name>MultipartFilter</filter-name>
+		<filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>MultipartFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	<!-- Define filter for Struts 2 -->
 	<filter>
 		<filter-name>struts2</filter-name>
@@ -49,11 +57,11 @@
 
 	<!-- Define Welcome File List -->
 	<welcome-file-list>
-		<welcome-file>/login.action</welcome-file>
+		<welcome-file></welcome-file>
 	</welcome-file-list>
 	
-	<!--Exception Handling-->
-    <error-page>
+	<!--Exception Handling -->
+	    <error-page> 
         <error-code>400</error-code>
         <location>/errors/accessDenied.jsp</location>
     </error-page>
@@ -65,6 +73,6 @@
      
     <error-page>
         <error-code>404</error-code>
-        <location>/errors/accessDenied.jsp</location>
-    </error-page>
+        <location>/errors/404.jsp</location>
+    </error-page> 
 </web-app>

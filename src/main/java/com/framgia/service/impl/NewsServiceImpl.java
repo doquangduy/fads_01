@@ -15,7 +15,7 @@ import com.framgia.search.Search;
 import com.framgia.service.NewsService;
 
 public class NewsServiceImpl implements NewsService {
-	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(NewsServiceImpl.class);
 	private NewsDAO newsDAO;
 	private NewsImageDAO newsImgDAO;
 
@@ -41,6 +41,7 @@ public class NewsServiceImpl implements NewsService {
 			LOGGER.info("List news by category");
 			return getNewsDAO().findNewsByCategoryId(category_id, status, searchNew);
 		} catch (Exception e) {
+			LOGGER.error("Not find list news by categoryIdl", e);
 			return null;
 		}
 	}
@@ -51,6 +52,7 @@ public class NewsServiceImpl implements NewsService {
 			LOGGER.info("Find by new id");
 			return getNewsDAO().findBy("id", id);
 		} catch (Exception e) {
+			LOGGER.error("Not find news!!", e);
 			return null;
 		}
 	}
@@ -85,6 +87,7 @@ public class NewsServiceImpl implements NewsService {
 			LOGGER.info("Find all news");
 			return getNewsDAO().findAll();
 		} catch (Exception e) {
+			LOGGER.error("load news all fail", e);
 			return null;
 		}
 	}

@@ -10,7 +10,7 @@ import com.framgia.model.City;
 import com.framgia.service.CityService;
 
 public class CityServiceImpl implements CityService {
-	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CityServiceImpl.class);
 	private CityDAO cityDAO;
 
 	public CityDAO getCityDAO() {
@@ -27,6 +27,7 @@ public class CityServiceImpl implements CityService {
 			LOGGER.info("List news by category");
 			return getCityDAO().findAll();
 		} catch (Exception e) {
+			LOGGER.error("load city all fail", e);
 			return null;
 		}
 	}
@@ -37,6 +38,7 @@ public class CityServiceImpl implements CityService {
 			LOGGER.info("Find by new by name");
 			return getCityDAO().findBy("name", name);
 		} catch (Exception e) {
+			LOGGER.error("Not find city name!!!", e);
 			return null;
 		}
 	}

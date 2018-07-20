@@ -10,7 +10,7 @@ import com.framgia.model.Category;
 import com.framgia.service.CategoryService;
 
 public class CategoryServiceImpl implements CategoryService {
-	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CategoryServiceImpl.class);
 	private CategoryDAO categoryDAO;
 
 	@Override
@@ -18,7 +18,7 @@ public class CategoryServiceImpl implements CategoryService {
 		try {
 			return getCategoryDAO().findAll();
 		} catch (Exception e) {
-			LOGGER.info("find all category fail !");
+			LOGGER.info("find all category fail !", e);
 			return null;
 		}
 	}

@@ -26,9 +26,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> findAll() {
 		try {
+			LOGGER.info("load all user fail !");
 			return getUserDAO().findAll();
 		} catch (Exception e) {
-			LOGGER.info("find all user fail !");
+			LOGGER.error("load all user fail !", e);
 			return null;
 		}
 	}
@@ -36,9 +37,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findByUsenameAndPassword(String username, String password) {
 		try {
+			LOGGER.info("Find user by username successful !");
 			return userDAO.findByUsenameAndPassword(username, password);
 		} catch (Exception e) {
-			LOGGER.info("---> Error find username and password");
+			LOGGER.error("Error find username and password", e);
 			return null;
 		}
 	}
@@ -71,6 +73,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User updateUser(User user) {
 		try {
+			LOGGER.info("Update user successful !");
 			return getUserDAO().saveOrUpdate(user);
 		} catch (Exception e) {
 			LOGGER.error("Update user fail", e);
@@ -81,9 +84,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findByUsername(String username) {
 		try {
+			LOGGER.info("Find user by username successful !");
 			return userDAO.findBy("username", username);
 		} catch (Exception e) {
-			LOGGER.error("Khong tim thay user");
+			LOGGER.error("Not find user by username");
 			return null;
 		}
 	}

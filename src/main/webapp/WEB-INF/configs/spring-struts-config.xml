@@ -2,17 +2,19 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+
 	<!-- ================== USER MODULE ================== -->
 	<bean id="userAction" class="com.framgia.action.UserAction" scope="prototype">
 		<property name="userService" ref="userService" />
 	</bean>
-	
-	<bean id="loginAction" class="com.framgia.action.LoginAction" scope="prototype">
+
+	<bean id="loginAction" class="com.framgia.action.LoginAction"
+		scope="prototype">
 		<property name="userService" ref="userService" />
 	</bean>
-	
-	<bean id="categoryAction" class="com.framgia.action.CategoryAction" scope="prototype">
+
+	<bean id="categoryAction" class="com.framgia.action.CategoryAction"
+		scope="prototype">
 		<property name="categoryService" ref="categoryService" />
 		<property name="newsService" ref="newsService" />
 		<property name="cityService" ref="cityService" />
@@ -20,11 +22,12 @@
 		<property name="commentService" ref="commentService" />
 		<property name="userService" ref="userService" />
 	</bean>
-	
-	<bean id="changePassAction" class="com.framgia.action.ChangePasswordAction" scope="prototype">
+
+	<bean id="changePassAction" class="com.framgia.action.ChangePasswordAction"
+		scope="prototype">
 		<property name="userService" ref="userService" />
 	</bean>
-	
+
 	<bean id="newsAction" class="com.framgia.action.NewsAction" scope="prototype">
 		<property name="newsService" ref="newsService" />
 		<property name="userFollowNewsService" ref="userFollowNewsService" />
@@ -33,17 +36,24 @@
 		<property name="commentService" ref="commentService" />
 		<property name="userService" ref="userService" />
 	</bean>
-	
-	<bean id="userFollowNewsAction" class="com.framgia.action.UserFollowNewsAction" scope="prototype">
+
+	<!-- UPLOAD FILE -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	</bean>
+
+	<bean id="userFollowNewsAction" class="com.framgia.action.UserFollowNewsAction"
+		scope="prototype">
 		<property name="userFollowNewsService" ref="userFollowNewsService" />
 		<property name="newsService" ref="newsService" />
 		<property name="userService" ref="userService" />
 	</bean>
-	
-	<bean id="commentAction" class="com.framgia.action.CommentAction" scope="prototype">
+
+	<bean id="commentAction" class="com.framgia.action.CommentAction"
+		scope="prototype">
 		<property name="commentService" ref="commentService" />
 		<property name="newsService" ref="newsService" />
 		<property name="userService" ref="userService" />
 	</bean>
-	
+
 </beans>

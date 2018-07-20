@@ -11,6 +11,7 @@ import com.framgia.dao.NewsDAO;
 import com.framgia.dao.NewsImageDAO;
 import com.framgia.model.News;
 import com.framgia.model.NewsImage;
+import com.framgia.model.User;
 import com.framgia.search.Search;
 import com.framgia.service.NewsService;
 
@@ -92,4 +93,23 @@ public class NewsServiceImpl implements NewsService {
 		}
 	}
 
+	@Override
+	public List<News> findNewsPost(User user) {
+		try {
+			List<News> news_list = newsDAO.findNewsByUserId(user.getId());
+			return news_list;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public List<NewsImage>  findImageByIdNews(Integer id) {
+		try {
+
+			return newsImgDAO.findbyNewsId(id);
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

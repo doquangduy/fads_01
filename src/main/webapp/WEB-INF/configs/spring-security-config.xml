@@ -6,24 +6,26 @@
 	http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<global-method-security pre-post-annotations="enabled" />
-	<http auto-config="true" use-expressions="true">
+	<http auto-config="true">
+		<intercept-url pattern="/**" access="permitAll" />
 		<!-- Kiem soat quyen truoc khi thuc hien request -->
+		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/login" access="isAnonymous()" />
 		<intercept-url pattern="/logout" access="isAuthenticated()" />
-
+		<intercept-url pattern="/createNewsForm" access="hasRole('ROLE_USER')" />
 		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
-
-		<intercept-url pattern="/assets/**" access="permitAll" />
 		<intercept-url pattern="/welcome"
 			access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+		<intercept-url pattern="/homepage"
+			access="permitAll" />
 		<access-denied-handler error-page="/accessDenied" />
-
 		<form-login login-page="/login" default-target-url="/welcome"
 			authentication-failure-handler-ref="customizeRedirectFailedHandler"
 			username-parameter="username" password-parameter="password" />
 		<logout logout-url="/logout" logout-success-url="/login"
 			delete-cookies="JSESSIONID" invalidate-session="true"/>
 		<csrf disabled="false"/>
+
 	</http>
 
 	<beans:bean id="encoder"

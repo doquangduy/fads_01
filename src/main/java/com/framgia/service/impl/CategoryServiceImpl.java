@@ -30,4 +30,13 @@ public class CategoryServiceImpl implements CategoryService {
 	public void setCategoryDAO(CategoryDAO categoryDAO) {
 		this.categoryDAO = categoryDAO;
 	}
+
+	@Override
+	public Category findbyId(Integer id) {
+		try {
+			return categoryDAO.findBy("id", id);
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

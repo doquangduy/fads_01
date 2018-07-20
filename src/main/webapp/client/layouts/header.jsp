@@ -37,6 +37,12 @@
 						<span><i class="glyphicon glyphicon-pencil"></i></span>
 					</s:a>
 				</li>
+
+					<li><s:a class="btn-success" action="postlist">
+						<s:text name="news.action.mypost" />
+					</s:a></li>
+				<li><a href="http://www.pingpong-labs.com" target="_blank">Visit
+						Site</a></li>
 				<li class="dropdown "><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="false">
 						Account <span class="caret"></span>

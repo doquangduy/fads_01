@@ -22,5 +22,7 @@ public interface NewsService {
 	List<News> loadAll();
 
 	List<NewsImage> findImageByIdNews(Integer id);
+	
+	Boolean removeMyNews(Integer id);
 
 }

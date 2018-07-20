@@ -104,12 +104,23 @@ public class NewsServiceImpl implements NewsService {
 	}
 
 	@Override
-	public List<NewsImage>  findImageByIdNews(Integer id) {
+	public List<NewsImage> findImageByIdNews(Integer id) {
 		try {
 
 			return newsImgDAO.findbyNewsId(id);
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	@Override
+	public Boolean removeMyNews(Integer id) {
+		try {
+			newsDAO.delete(findById(id));
+			return true;
+		} catch (Exception e) {
+			throw e;
+		}
+
 	}
 }

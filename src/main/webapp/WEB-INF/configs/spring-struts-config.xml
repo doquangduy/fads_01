@@ -37,11 +37,6 @@
 		<property name="userService" ref="userService" />
 	</bean>
 
-	<!-- UPLOAD FILE -->
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	</bean>
-
 	<bean id="userFollowNewsAction" class="com.framgia.action.UserFollowNewsAction"
 		scope="prototype">
 		<property name="userFollowNewsService" ref="userFollowNewsService" />

@@ -1,36 +1,28 @@
-package common;
+	package common;
 
 import java.io.File;
 import java.io.IOException;
-
-import javax.servlet.ServletContext;
+import java.util.Calendar;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.struts2.ServletActionContext;
 
 public class UserCustomFile {
-	final static String MY_PATH = "fads_01\\src\\main\\webapp\\assets\\images";
-
 	public static void saveFileLocal(File my_file, String file_name) {
-
 		try {
-			ServletContext context = ServletActionContext.getServletContext();
-			String absolute_path = context.getRealPath("");
-			int index_1 = absolute_path.indexOf(".metadata");
-
-			String final_path = absolute_path.substring(0, index_1);
-			final_path = final_path + MY_PATH;
-
+			String configPath = System.getProperty("configPath");
+			String final_path = configPath;
 			File dir = new File(final_path);
 			if (!dir.exists())
 				dir.mkdirs();
+			int index = file_name.indexOf(".");
+			String tmpName = file_name.substring(0, index);
+			String tmpExtend = file_name.substring(index);
+			file_name = tmpName + "-" + Calendar.getInstance().get(Calendar.MILLISECOND) + tmpExtend;
 			File fileToCreate = new File(final_path, file_name);
 			FileUtils.copyFile(my_file, fileToCreate);
-
 		} catch (IOException e) {
-
 			e.printStackTrace();
 		}
-
 	}
 }
+	

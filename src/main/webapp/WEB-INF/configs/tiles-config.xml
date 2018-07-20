@@ -46,6 +46,7 @@
 			<add-attribute value="/assets/js/autocomplete.js" />
 			<add-attribute value="/assets/js/shareFacebook.js" />
 			<add-attribute value="/assets/js/slider.js" />
+			<add-attribute value="/assets/js/confirmdelete.js" />
 		</put-list-attribute>
 	</definition>
 

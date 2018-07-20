@@ -62,6 +62,14 @@ public class NewsAction extends BaseAction {
 			return INPUT;
 	}
 
+	public String delnews() {
+		if (getCurrentUser() == null)
+			return LOGIN;
+		if (newsService.removeMyNews(id))
+			return SUCCESS;
+		return ERROR;
+	}
+
 	public String index() {
 		return SUCCESS;
 	}
@@ -234,4 +242,3 @@ public class NewsAction extends BaseAction {
 	}
 
 }
-

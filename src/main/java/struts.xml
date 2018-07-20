@@ -9,8 +9,7 @@
 	<constant name="struts.custom.i18n.resources" value="global" />
 	<constant name="struts.convention.result.path" value="/"></constant>
 	<constant name="struts.ui.theme" value="simple" />
-	<constant name="struts.multipart.maxSize" value="1000000" />
-
+	
 	<!-- // common actions -->
 	<package name="default" namespace="/" extends="struts-default">
 		<result-types>
@@ -115,6 +114,11 @@
 		<action name="postlist" class="newsAction" method="postList">
 			<result name="success">postlist</result>
 			<result name="login" type="redirect">/login</result>
+		</action>
+		<action name="delnews" class="newsAction" method="delnews">
+			<result name="success" type="redirect">/homepage</result>
+			<result name="login" type="redirect">/login</result>
+			<result name="error">/errors/404.jsp</result>
 		</action>
 
 		<action name="createNewsForm" class="newsAction" method="saveOrUpdateNews">

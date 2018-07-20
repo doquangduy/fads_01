@@ -39,17 +39,17 @@
 		<property name="price" type="java.lang.Double">
 			<column name="price" precision="22" scale="0" />
 		</property>
-		<list name="userFollowNewses" fetch="select" inverse="true">
+		<list name="userFollowNewses" fetch="select" cascade="delete" inverse="true">
 			<key column="news_id" />
 			<index column="id" />
 			<one-to-many class="UserFollowNews" />
 		</list>
-		<list name="comments" fetch="select" inverse="true">
+		<list name="comments" fetch="select" cascade="delete" inverse="true">
 			<key column="news_id" />
 			<index column="id" />
 			<one-to-many class="Comment" />
 		</list>
-		<list name="newsImages" fetch="select" inverse="true">
+		<list name="newsImages" fetch="select" cascade="delete" inverse="true">
 			<key column="news_id" />
 			<index column="id" />
 			<one-to-many class="NewsImage" />

@@ -34,7 +34,7 @@
 				<s:url action="delnews" var="delnews">
 					<s:param name="id" value="id" />
 				</s:url>
-				<td><s:a href="%{delnews}">
+				<td><s:a class= "delete" href="%{delnews}">
 						<s:text name="users.action.delete" />
 					</s:a></td>
 			</tr>

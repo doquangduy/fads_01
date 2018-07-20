@@ -21,6 +21,7 @@
 					<form
 						action="${createNewsUrl}?${_csrf.parameterName}=${_csrf.token}"
 						method="post" enctype="multipart/form-data" validate="true">
+						
 						<div class="row" >
 							<div class="col-xs-8">
 								<div class="form-group">
